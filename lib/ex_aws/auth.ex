@@ -42,6 +42,7 @@ defmodule ExAws.Auth do
   def headers(http_method, url, service, config, headers, body) do
     with {:ok, config} <- validate_config(config) do
       datetime = :calendar.universal_time()
+      url = ExAws.Request.Url.sanitize(url, service)
 
       headers =
         [
